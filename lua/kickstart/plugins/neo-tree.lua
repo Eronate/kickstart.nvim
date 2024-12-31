@@ -1,6 +1,3 @@
--- Neo-tree is a Neovim plugin to browse the file system
--- https://github.com/nvim-neo-tree/neo-tree.nvim
-
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
@@ -11,15 +8,22 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree position=left toggle reveal<CR>', desc = 'Toggle NeoTree', silent = true },
   },
-  opts = {
+  config = {
+    popup_border_style = 'rounded',
+    sources = {
+      'filesystem',
+      'buffers',
+    },
     filesystem = {
-      window = {
-        mappings = {
-          ['\\'] = 'close_window',
-        },
+      filtered_items = {
+        visible = true,
+        hide_gitignored = false,
+        hide_hidden = false,
+        hide_dotfiles = false,
       },
+      follow_current_file = true,
     },
   },
 }
